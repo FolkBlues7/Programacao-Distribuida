@@ -14,8 +14,8 @@ public class GenerateData {
 
     public static void main(String[] args){
 
-        final int totalPagina = 100;
-        final int urlPorPagina = 100;
+        final int totalPagina = 10;
+        final int urlPorPagina = 10;
 
         final String fileName = "ServerData";
 

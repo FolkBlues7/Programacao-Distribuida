@@ -51,6 +51,7 @@ public class ServerData {
 
             while (true){
                 executorService.submit(new ServerDataRunnable(serverSocket.accept(), database));
+                System.out.println("Alguém se conectou!");
             }
 
         } catch (RuntimeException e) {

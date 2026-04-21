@@ -21,22 +21,20 @@ public class ServerDataRunnable implements Runnable {
     @Override
     public void run() {
 
-        try {
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        try (PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));){
 
             //formato da mensagem: GET/URL1, então parts[0] armazena o tipo da requisição e parts[1] a chave
             String msg = "";
             while ((msg = in.readLine()) != null){
-                String[] parts = msg.split("/");
                 if (msg.contains("GET")){ //retorna a lista das hiperligações associados a chave
+                    String[] parts = msg.split("/");
                     out.println(database.get(parts[1]));
-                }
-                if (msg.contains("LINKS")){ //retorna a lista de chaves
-                    out.println(database.keySet());
+                } else if (msg.contains("LINKS")){ //retorna a lista de chaves
+                    //out.println(database.keySet());
+                    out.println(String.join(",", database.keySet()));
                 }
             }
-
 
         } catch (IOException e) {
             throw new RuntimeException(e);
