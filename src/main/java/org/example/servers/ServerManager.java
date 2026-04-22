@@ -23,7 +23,7 @@ public class ServerManager {
 
         //Essa parte conecta-se com o ServerData e lê todas as chaves das URLs e salva na fila
         //Depois fecha a conexão com o ServerData
-        Socket serverData = new Socket(NetworkInfo.localhost, NetworkInfo.ServerDataPort);
+        Socket serverData = new Socket(NetworkInfo.ServerDataIpHost, NetworkInfo.ServerDataPort);
 
         PrintWriter out = new PrintWriter(serverData.getOutputStream(), true);
         BufferedReader in = new BufferedReader(new InputStreamReader(serverData.getInputStream()));

@@ -19,8 +19,8 @@ public class ServerWorker {
 
             for (int i = 0; i< workersQuantity; i++){
                 //Esse construtor enorme é o construtor de um runnable de Worker.
-                ServerWorkerRunnable serverWorkerRunnable = new ServerWorkerRunnable(new Socket(NetworkInfo.localhost, NetworkInfo.ServerManagerPort),
-                        new Socket(NetworkInfo.localhost, NetworkInfo.ServerDataPort));
+                ServerWorkerRunnable serverWorkerRunnable = new ServerWorkerRunnable(new Socket(NetworkInfo.ServerManagerIpHost, NetworkInfo.ServerManagerPort),
+                        new Socket(NetworkInfo.ServerDataIpHost, NetworkInfo.ServerDataPort));
 
                 executorService.submit(serverWorkerRunnable);
             }
