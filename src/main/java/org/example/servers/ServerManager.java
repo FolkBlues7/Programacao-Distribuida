@@ -35,7 +35,7 @@ public class ServerManager {
         in.close();
 
         //Essa parte é quem cria o servidor e fica a escutar pelos Workers
-        try(ServerSocket serverSocket = new ServerSocket(5050);ExecutorService executorService = Executors.newFixedThreadPool(8)){
+        try(ServerSocket serverSocket = new ServerSocket(NetworkInfo.ServerManagerPort);ExecutorService executorService = Executors.newFixedThreadPool(8)){
             while (true) {
                 ServerManagerRunnable serverManagerRunnable = new ServerManagerRunnable(serverSocket.accept(), fila, urlVisitadas);
                 executorService.submit(serverManagerRunnable);

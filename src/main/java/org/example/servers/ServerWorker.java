@@ -25,8 +25,6 @@ public class ServerWorker {
                 executorService.submit(serverWorkerRunnable);
             }
 
-
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
