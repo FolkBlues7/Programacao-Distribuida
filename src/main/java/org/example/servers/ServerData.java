@@ -47,7 +47,7 @@ public class ServerData {
 
         //esse try serve para conectar ao servidor e também criar o threadpool
         try(ServerSocket serverSocket = new ServerSocket(NetworkInfo.ServerDataPort);
-            ExecutorService executorService = Executors.newSingleThreadExecutor()){
+            ExecutorService executorService = Executors.newFixedThreadPool(8)){
 
             while (true){
                 executorService.submit(new ServerDataRunnable(serverSocket.accept(), database));
