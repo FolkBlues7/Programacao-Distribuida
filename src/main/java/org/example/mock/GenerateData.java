@@ -14,8 +14,8 @@ public class GenerateData {
 
     public static void main(String[] args){
 
-        final int totalPagina = 10;
-        final int urlPorPagina = 10;
+        final int totalPagina = 1000;
+        final int urlPorPagina =1000;
 
         final String fileName = "ServerData";
 
@@ -34,7 +34,7 @@ public class GenerateData {
 
                 bufferedWriter.write(String.valueOf(stringBuilder));
                 bufferedWriter.newLine(); //poderia ser o \n também, mas assim é mais fácil de ler
-                stringBuilder.setLength(0);
+                stringBuilder.setLength(0);// limpa o string builder para escrever mais uma linha
             }
 
         } catch (IOException e) {

@@ -24,7 +24,7 @@ public class ServerData {
 
     public static void main(String[] args) throws IOException {
 
-        String ServerDataPath = "/home/viniciusdesktop/Documentos/Projetos/ProgramacaoDistribuida/ServerData";
+        String ServerDataPath = NetworkInfo.ServerDataPath;
 
         Map<String, List<String>> database = new HashMap<>();
 
@@ -47,7 +47,7 @@ public class ServerData {
 
         //esse try serve para conectar ao servidor e também criar o threadpool
         try(ServerSocket serverSocket = new ServerSocket(NetworkInfo.ServerDataPort);
-            ExecutorService executorService = Executors.newFixedThreadPool(8)){
+            ExecutorService executorService = Executors.newSingleThreadExecutor()){
 
             while (true){
                 executorService.submit(new ServerDataRunnable(serverSocket.accept(), database));

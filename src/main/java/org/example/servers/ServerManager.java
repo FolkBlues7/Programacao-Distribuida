@@ -29,14 +29,13 @@ public class ServerManager {
         BufferedReader in = new BufferedReader(new InputStreamReader(serverData.getInputStream()));
 
         out.println("LINKS");
-        //difícil de ler :)
         fila = new LinkedBlockingQueue<>(List.of(in.readLine().split(",")));
         serverData.close();
         out.close();
         in.close();
 
         //Essa parte é quem cria o servidor e fica a escutar pelos Workers
-        try(ServerSocket serverSocket = new ServerSocket();ExecutorService executorService = Executors.newFixedThreadPool(8)){
+        try(ServerSocket serverSocket = new ServerSocket(5050);ExecutorService executorService = Executors.newFixedThreadPool(8)){
             while (true) {
                 ServerManagerRunnable serverManagerRunnable = new ServerManagerRunnable(serverSocket.accept(), fila, urlVisitadas);
                 executorService.submit(serverManagerRunnable);

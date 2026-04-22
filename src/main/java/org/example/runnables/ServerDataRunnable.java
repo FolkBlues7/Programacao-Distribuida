@@ -27,11 +27,11 @@ public class ServerDataRunnable implements Runnable {
             //formato da mensagem: GET/URL1, então parts[0] armazena o tipo da requisição e parts[1] a chave
             String msg = "";
             while ((msg = in.readLine()) != null){
+                System.out.println(msg);
                 if (msg.contains("GET")){ //retorna a lista das hiperligações associados a chave
                     String[] parts = msg.split("/");
-                    out.println(database.get(parts[1]));
+                    out.println(String.join(",",database.get(parts[1])));
                 } else if (msg.contains("LINKS")){ //retorna a lista de chaves
-                    //out.println(database.keySet());
                     out.println(String.join(",", database.keySet()));
                 }
             }
